@@ -26,13 +26,23 @@ function App() {
 
   }
 
- const toggleMode =()=>{
+  const removeBodyClasses=()=>{
+    document.body.classList.remove('bg-light')
+    document.body.classList.remove('bg-dark')
+    document.body.classList.remove('bg-warning')
+    document.body.classList.remove('bg-success')
+    document.body.classList.remove('bg-danger')
+    document.body.classList.remove('bg-primary')
+  }
+ const toggleMode =(cls)=>{
+  removeBodyClasses();
+  document.body.classList.add('bg-'+cls)
     if(mode==='light')
     {
       setMode('dark')
       document.body.style.backgroundColor='#042743'
     showAlert("DarkMode has been enabled", "success")
-  document.title=("Darkmode on") 
+ // document.title=("Darkmode on") 
   }
     else{
       setMode('light')
@@ -49,10 +59,10 @@ function App() {
 <div className='container my-3'>
   <Switch>
    <Route exact path='/about1'>
-   <About1 />
+   <About1 mode={mode} />
    </Route>
     <Route exact path='/'>
-<TextForm  heading="Enter the Text to analyze below"
+<TextForm  heading="Try TextUtils -word Counter,Character Counter,Remove Extra Spaces"
 mode={mode} showAlert={showAlert}/>
 </Route>
    
